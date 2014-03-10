@@ -98,7 +98,7 @@ mon_setcolor(int argc, char **argv, struct Trapframe *tf)
 	for(i = 0; argv[2][i] != '\0'; i++)
 	{
 		c = (int)argv[2][i];
-		c = c|tempcolor;
+		c = c | tempcolor;
 		cprintf("%c",c);
 	}
 	cprintf("\n");
