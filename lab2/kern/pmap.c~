@@ -151,8 +151,8 @@ mem_init(void)
 //----------------------------------------My Code-------------------------------------------------------------
 	pages = (struct PageInfo *)boot_alloc(sizeof(struct PageInfo) * npages);     
 	//Array of PageInfo       	
-	cprintf("npages: %d\n", npages);							
-	cprintf("pages: %x\n", pages);								
+	//cprintf("npages: %d\n", npages);							
+	//cprintf("pages: %x\n", pages);								
 //----------------------------------------My Code-------------------------------------------------------------
 
 	//////////////////////////////////////////////////////////////////////
@@ -268,6 +268,7 @@ page_init(void)
 	// NB: DO NOT actually touch the physical memory corresponding to
 	// free pages!
 //----------------------------------------My Code-------------------------------------------------------------
+	//extern char end[];
 	size_t i;
 	//cprintf("address and IOPHYSMEM: %x -- %x -- %x\n", npages_basemem * PGSIZE, IOPHYSMEM, EXTPHYSMEM);	
 	//It shows that npages_basemem * PGSIZE == IOPHYSMEM
@@ -423,16 +424,6 @@ boot_map_region(pde_t *pgdir, uintptr_t va, size_t size, physaddr_t pa, int perm
 		temp_va += PGSIZE; temp_pa += PGSIZE;				
 		//must increment temp_va and temp_pa after those instructions above.
 	}
-/*
-	int i;
-//cprintf("Virtual Address %x mapped to Physical Address %x\n", va, pa);
-for (i = 0; i < size/PGSIZE; ++i, va += PGSIZE, pa += PGSIZE) {
-pte_t *pte = pgdir_walk(pgdir, (void *) va, 1);	//create
-if (!pte) panic("boot_map_region panic, out of memory");
-*pte = pa | perm | PTE_P;
-}
-//cprintf("Virtual Address %x mapped to Physical Address %x\n", va, pa);
-*/
 //----------------------------------------My Code-------------------------------------------------------------
 }
 

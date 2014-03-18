@@ -40,7 +40,8 @@ uint32_t myxtou_lab2(char *buf) 	//transfer address to number
 {
 	uint32_t r = 0;
 	buf += 2;		//buf = "0x....."
-	while (*buf)	{
+	while (*buf)
+	{
 		r = r * 16;
 		if (*buf >= 'a') 
 			r = r + *buf - 'a' + 10;			//a...f
@@ -58,15 +59,18 @@ void myprint_lab2(pte_t *pte)		//print the permission bits
 
 bool check_pa_lab2(uint32_t pa, uint32_t *result)		//infomation from pmap.c/mem_int
 {
-	if (pa >= PADDR(pages) && pa < PADDR(pages) + PTSIZE)	{
+	if (pa >= PADDR(pages) && pa < PADDR(pages) + PTSIZE)
+	{
 		*result = *(uint32_t *)(pa - PADDR(pages) + UPAGES);
 		return true;
 	}
-	if (pa >= PADDR(bootstack) && pa < PADDR(bootstack) + KSTKSIZE)	{
+	if (pa >= PADDR(bootstack) && pa < PADDR(bootstack) + KSTKSIZE)
+	{
 		*result = *(uint32_t *)(pa - PADDR(bootstack) + KSTACKTOP - KSTKSIZE);
 		return true;
 	}
-	if (pa >= 0 && pa < 0 - KERNBASE)	{
+	if (pa >= 0 && pa < 0 - KERNBASE)
+	{
 		*result = *(uint32_t *)(pa + KERNBASE);
 		return true;
 	}
